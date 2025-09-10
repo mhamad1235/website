@@ -28,20 +28,16 @@
     .chip{display:inline-flex;align-items:center;gap:8px;border:var(--border);border-radius:999px;padding:.35rem .7rem;font-weight:600;color:var(--muted);background:#fff}
     .price{font-weight:800;font-size:1.6rem}
 
-    /* Header */
     header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:var(--border)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:.85rem 0}
     .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
     .brand-logo{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #54b185, #1C5D42);box-shadow:inset 0 0 0 3px #fff,0 6px 14px rgba(28,93,66,.25)}
 
-    /* Breadcrumbs */
     .crumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.92rem;padding:12px 0}
     .crumbs a{color:var(--muted)}
 
-    /* Product grid */
     .product{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding-block:28px}
 
-    /* Gallery */
     .gallery{position:relative;display:grid;grid-template-columns:100px 1fr;gap:14px}
     .thumbs{display:grid;gap:10px;max-height:560px;overflow:auto;scrollbar-width:none}
     .thumbs::-webkit-scrollbar{display:none}
@@ -51,7 +47,6 @@
     .main-img{aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
     .zoom{position:absolute;inset:auto 14px 14px auto;background:#fff;border-radius:999px;border:var(--border);width:42px;height:42px;display:grid;place-items:center}
 
-    /* Details */
     .badges{display:flex;gap:8px;flex-wrap:wrap}
     .rating{display:flex;align-items:center;gap:8px;color:#F4B400;font-weight:700}
     .variant{display:grid;gap:10px}
@@ -66,33 +61,27 @@
     .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .benefit{border:var(--border);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--muted);background:#fff}
 
-    /* Accordions */
     .accordion{border-top:var(--border);border-bottom:var(--border);margin-top:14px}
     .accordion details{border-top:var(--border)}
     .accordion summary{list-style:none;cursor:pointer;padding:16px 6px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
     .accordion summary::-webkit-details-marker{display:none}
     .accordion .content{padding:0 6px 16px 6px;color:var(--muted)}
 
-    /* Why capsules & compatibility */
     .section{padding-block:44px}
     .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
     .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .panel{background:#fff;border:var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
 
-    /* Recommendation strip */
     .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:14px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
     .card{background:#fff;border:var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
     .card .thumb{aspect-ratio:1/1;object-fit:cover}
     .card .body{padding:12px}
 
-    /* Sticky add-to-cart (mobile) */
     .sticky-bar{position:sticky;bottom:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:saturate(140%) blur(6px);border-top:var(--border);display:none}
     .sticky-inner{max-width:var(--maxw);margin:auto;padding:10px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between}
 
-    /* Footer */
     footer{margin-top:44px;border-top:var(--border);padding:18px 0;color:var(--muted);text-align:center}
 
-    /* Utilities */
     .grid{display:grid;gap:12px}
     .mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
 
@@ -106,7 +95,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="Home"><span class="brand-logo"></span><span>MatchaCo</span></a>
@@ -115,7 +103,6 @@
   </header>
 
   <main class="container">
-    <!-- Breadcrumbs -->
     <nav class="crumbs" aria-label="Breadcrumbs">
       <a href="index.html">Home</a>
       <span>›</span>
@@ -124,39 +111,28 @@
       <span id="crumbTitle" aria-current="page">Vanilla Ceremonial Matcha Capsules</span>
     </nav>
 
-    <!-- Product -->
     <section class="product" id="product">
-      <!-- Gallery -->
       <div class="gallery">
-        <div class="thumbs" id="thumbs">
-          <!-- Will be injected -->
-        </div>
+        <div class="thumbs" id="thumbs"></div>
         <div class="stage">
           <img id="mainImage" class="main-img" src="" alt="Main product image">
           <button class="zoom" id="zoomBtn" aria-label="Open image fullscreen">🔍</button>
         </div>
       </div>
 
-      <!-- Details -->
       <div>
         <div class="eyebrow">Ceremonial Grade</div>
         <h1 class="h1" id="title">Vanilla Ceremonial Matcha Capsules</h1>
-        <div class="rating mt-2" id="rating" aria-label="Rating">
-          <!-- Will be injected -->
-        </div>
+        <div class="rating mt-2" id="rating" aria-label="Rating"></div>
 
         <div class="badges mt-3" id="badges"></div>
 
-        <div class="mt-4 price" id="price" data-eur="14.99" data-usd="16.99">€14.99</div>
+        <div class="mt-4 price" id="price">€14.99</div>
 
-        <!-- Variants -->
         <div class="variant mt-3" role="group" aria-label="Choose pack size">
-          <div class="options" id="variants">
-            <!-- Will be injected -->
-          </div>
+          <div class="options" id="variants"></div>
         </div>
 
-        <!-- Purchase options -->
         <div class="panel mt-3">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
             <div>
@@ -169,7 +145,6 @@
           </div>
         </div>
 
-        <!-- Quantity & CTA -->
         <div class="mt-3" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
           <div class="qty" aria-label="Choose quantity">
             <button type="button" id="minus">−</button>
@@ -181,10 +156,8 @@
         </div>
         <div class="eyebrow mt-2">Free shipping over €80 • Secure checkout</div>
 
-        <!-- Benefits quickies -->
         <div class="benefits mt-4" id="benefits"></div>
 
-        <!-- Accordions -->
         <div class="accordion mt-4">
           <details>
             <summary>Ingredients & Nutrition <span>+</span></summary>
@@ -202,7 +175,6 @@
       </div>
     </section>
 
-    <!-- Why capsules / Compatibility -->
     <section class="section">
       <div class="info-grid">
         <div>
@@ -237,18 +209,14 @@
       </div>
     </section>
 
-    <!-- You may also like -->
     <section class="section">
       <div class="head">
         <div class="h2">You may also like</div>
       </div>
-      <div class="strip" id="recs">
-        <!-- Will be injected -->
-      </div>
+      <div class="strip" id="recs"></div>
     </section>
   </main>
 
-  <!-- Sticky bar (mobile) -->
   <div class="sticky-bar" aria-hidden="true">
     <div class="sticky-inner">
       <div style="min-width:0">
@@ -263,18 +231,13 @@
     <div class="container">© <span id="year"></span> MatchaCo — All rights reserved.</div>
   </footer>
 
-  <!-- Lightbox -->
   <dialog id="lightbox" style="border:none;border-radius:16px;padding:0;max-width:min(92vw,1000px)">
     <img id="lightboxImg" alt="Enlarged product image" style="width:100%;height:auto;border-radius:16px"/>
     <form method="dialog" style="padding:8px 12px;text-align:right"><button class="btn ghost">Close</button></form>
   </dialog>
 
-  <!-- Load the shared catalog -->
-  
-
 <script>
 // ---------- Catalog-driven population ----------
-// products-data.js
 window.PRODUCTS = [
   {
     id: "ceremonial",
@@ -456,6 +419,13 @@ const params = new URLSearchParams(location.search);
 const slug = params.get('product') || 'vanilla-ceremonial-matcha-capsules';
 const product = (window.catalog && catalog.bySlug(slug)) || (window.PRODUCTS && window.PRODUCTS[0]);
 
+// ✅ Helper to link to *this same page* with a different product (avoids 404 on Vercel)
+const productURL = (slug) => {
+  const u = new URL(location.href);
+  u.searchParams.set('product', slug);
+  return u.pathname + u.search;
+};
+
 // Quick SVG fallback
 const FALLBACK_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500"><rect width="100%" height="100%" fill="#f2f2f2"/><text x="50%" y="50%" font-family="Arial" font-size="28" fill="#999" text-anchor="middle" dominant-baseline="middle">Image unavailable</text></svg>'
@@ -486,26 +456,22 @@ ratingEl.innerHTML = `★★★★★ <span style="color:var(--ink);font-weight:
 badgesWrap.innerHTML = product.badges.map(b => `<span class="chip">${b}</span>`).join('');
 benefitsWrap.innerHTML = product.benefits.map(b => `<div class="benefit">${b}</div>`).join('');
 
-// ===================== GALLERY (from products-data.js) =====================
+// ===================== GALLERY =====================
 const imgs = (Array.isArray(product.images) && product.images.length) ? product.images : [FALLBACK_IMG];
 
 let currentIndex = 0;
 function setMainImage(i) {
   const src = imgs[i] || FALLBACK_IMG;
-  mainImage.src = src;                 // ensure we set a real src
+  mainImage.src = src;
   mainImage.alt = `${product.title} image ${i+1}`;
   mainImage.loading = 'eager';
 }
 mainImage.onerror = () => { mainImage.src = FALLBACK_IMG; };
 
-// Build thumbnails with *src* so they render immediately
 thumbsWrap.innerHTML = imgs.map((src, i) => `
-  <img class="thumb${i===0 ? ' active' : ''}"
-       src="${src}" data-index="${i}" alt="${product.title} image ${i+1}"
-       loading="lazy">
+  <img class="thumb${i===0 ? ' active' : ''}" src="${src}" data-index="${i}" alt="${product.title} image ${i+1}" loading="lazy">
 `).join('');
 
-// Wire thumb clicks
 thumbsWrap.querySelectorAll('.thumb').forEach(el => {
   el.onerror = () => { el.src = FALLBACK_IMG; };
   el.addEventListener('click', () => {
@@ -516,7 +482,6 @@ thumbsWrap.querySelectorAll('.thumb').forEach(el => {
   });
 });
 
-// Set the initial main image after the DOM is ready
 setMainImage(0);
 
 // ===================== VARIANTS & PRICE =====================
@@ -554,11 +519,12 @@ shipEl.textContent = product.shipping;
 const recs = (product.recommended && product.recommended.length)
   ? product.recommended
   : (catalog ? catalog.others(product.slug, 3).map(p=>p.slug) : []);
+
 recsStrip.innerHTML = recs.map(s=>{
   const p = catalog.bySlug(s) || product;
   return `
     <article class="card">
-      <a href="vanilla-capsules-product.html?product=${p.slug}">
+      <a href="${productURL(p.slug)}">
         <img class="thumb" src="${p.images[0] || FALLBACK_IMG}" alt="${p.title}" loading="lazy" />
       </a>
       <div class="body">
@@ -569,7 +535,7 @@ recsStrip.innerHTML = recs.map(s=>{
   `;
 }).join('');
 
-// ===================== UI niceties (unchanged) =====================
+// ===================== UI niceties =====================
 const zoomBtn = document.getElementById('zoomBtn');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
