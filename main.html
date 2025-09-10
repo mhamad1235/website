@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MatchaCo — Pure • Calm • Ceremonial</title>
+  <meta name="description" content="A clean, responsive homepage inspired by Pure Matchaccino — built with vanilla HTML, CSS, and JS.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFFDF7;
+      --bg-contrast:#F5F1E9;
+      --ink:#0E1C16;
+      --muted:#5B6B62;
+      --brand:#91204d;       /* brand color */
+      --brand-2:#6f173a;     /* darker hover */
+      --accent:#B88A44;      /* warm gold accent */
+      --card:#FFFFFF;
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:20px;
+      --maxw:1200px;
+    }
+    *,*:before,*:after{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
+    .btn{display:inline-block;padding:.9rem 1.15rem;border-radius:999px;background:var(--brand);color:#fff;font-weight:600;letter-spacing:.2px;border:1px solid var(--brand);transition:.2s}
+    .btn:hover{background:var(--brand-2);border-color:var(--brand-2)}
+    .btn.outline{background:transparent;color:var(--brand);border-color:var(--brand)}
+    .btn.outline:hover{background:var(--brand);color:#fff}
+    .eyebrow{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.2px;line-height:1.05;font-size:clamp(2rem,3.6vw,3.6rem)}
+    .h2{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.2px;line-height:1.1;font-size:clamp(1.6rem,2.6vw,2.4rem)}
+    .h3{font-weight:700;font-size:1.1rem}
+
+    /* Announcement bar */
+    .announcement{background:linear-gradient(90deg, #91204d, #91204d);color:#fff;text-align:center;padding:.55rem 1rem;font-size:.9rem}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(16,24,20,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:.85rem 0}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .brand-logo{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #c06c92, #91204d);box-shadow:inset 0 0 0 3px #fff,0 6px 14px rgba(145,32,77,.25)}
+    .brand span{font-family:"Playfair Display",serif;font-size:1.25rem}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:600}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-ctas{display:flex;gap:10px;align-items:center}
+    .icon-btn{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(16,24,20,.12);background:#fff}
+    .icon-btn:hover{border-color:rgba(16,24,20,.28)}
+    .hamburger{display:none}
+
+    /* Mobile menu */
+    .mobile-menu{position:fixed;inset:0 0 auto 0;top:64px;background:rgba(255,255,255,.98);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s;border-bottom:1px solid rgba(16,24,20,.08)}
+    .mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .mobile-menu .links{display:grid;gap:16px;padding:16px}
+
+    /* Hero */
+    .hero{position:relative}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:clamp(28px,3vw,56px)}
+    .hero-copy{padding-block:24px}
+    .hero p{color:var(--muted);font-size:1.05rem;max-width:56ch}
+    .hero-media{position:relative}
+    .hero-blob{position:absolute;inset:auto -12% -18% -12%;z-index:-1;filter:blur(40px);opacity:.55;background:conic-gradient(from 180deg at 50% 50%, #e3b7cb, #f3dbe6, #fff2f7, #e3b7cb);height:80%;border-radius:50%}
+    .hero-img{aspect-ratio:4/5;border-radius:var(--radius);object-fit:cover;box-shadow:var(--shadow)}
+
+    /* Product Carousel */
+    .section{padding-block:48px}
+    .section .head{display:flex;align-items:end;justify-content:space-between;margin-bottom:20px}
+    .carousel{position:relative}
+    .track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px, 1fr);gap:16px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;scrollbar-width:none}
+    .track::-webkit-scrollbar{display:none}
+    .card{scroll-snap-align:start;background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(16,24,20,.06)}
+    .card .thumb{aspect-ratio:1/1;object-fit:cover}
+    .card .body{padding:14px}
+    .price{color:var(--accent);font-weight:700}
+    .carousel .arrows{position:absolute;inset:0 0 auto 0;display:flex;justify-content:space-between;pointer-events:none}
+    .carousel button.arrow{pointer-events:auto;margin-top:-24px;top:50%;position:relative;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:1px solid rgba(16,24,20,.18);background:#fff;box-shadow:var(--shadow)}
+    .carousel button.arrow:hover{border-color:rgba(16,24,20,.36)}
+
+    /* Category tiles */
+    .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .tile{position:relative;border-radius:18px;overflow:hidden;min-height:210px;background:#dfe9e4}
+    .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35))}
+    .tile .label{position:absolute;inset:auto 14px 14px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .tile h3{color:#fff;margin:0}
+
+    /* Copy block */
+    .copy{background:var(--bg-contrast);border-top:1px solid rgba(16,24,20,.06);border-bottom:1px solid rgba(16,24,20,.06)}
+    .copy .wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+    .copy p{color:var(--muted);font-size:1.05rem}
+
+    /* Reviews */
+    .stars{color:#F4B400;letter-spacing:2px}
+    .review{background:#fff;border:1px solid rgba(16,24,20,.08);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .review .who{display:flex;align-items:center;gap:12px;margin-top:12px}
+    .avatar{width:40px;height:40px;border-radius:50%;background:#cfe3d8}
+
+    /* Gallery */
+    .ugc{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+    .ugc img{aspect-ratio:1/1;object-fit:cover;border-radius:12px}
+
+    /* Footer */
+    footer{background:#91204d;color:#e6efe9}
+    footer a{color:#cfe3d8}
+    .footer-wrap{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:26px;padding-block:36px}
+    .footer-col h4{margin:.2rem 0 .8rem 0}
+    .copyright{border-top:1px solid rgba(255,255,255,.08);font-size:.9rem;color:#b9d1c5;padding:14px 0}
+
+    /* Utilities */
+    .mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
+    .grid{display:grid;gap:16px}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero .wrap{grid-template-columns:1fr;gap:26px}
+      .copy .wrap{grid-template-columns:1fr}
+      .tiles{grid-template-columns:repeat(2,1fr)}
+      .ugc{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width: 840px){
+      .nav-links{display:none}
+      .hamburger{display:block}
+    }
+    @media (max-width: 560px){
+      .ugc{grid-template-columns:repeat(3,1fr)}
+    }
+
+    /* Subtle fade-in */
+    [data-reveal]{opacity:0;transform:translateY(12px);transition:.6s ease}
+    [data-reveal].visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement">Enjoy free shipping on orders over <b>$80</b></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="MatchaCo Home">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span>MatchaCo</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#capsules">Matcha Capsules</a>
+        <a href="#categories">Flavour Syrups</a>
+        <a href="#categories">Ube</a>
+        <a href="#categories">Barista</a>
+      </nav>
+      <div class="nav-ctas">
+        <button class="icon-btn" aria-label="Search" id="openSearch" title="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button class="icon-btn" aria-label="Cart" title="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </button>
+        <button class="icon-btn hamburger" aria-label="Open menu" id="openMenu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="container links">
+        <a href="#capsules">Matcha Capsules</a>
+        <a href="#categories">Flavour Syrups</a>
+        <a href="#categories">Ube</a>
+        <a href="#categories">Barista</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container wrap">
+      <div class="hero-copy" data-reveal>
+        <div class="eyebrow">Pure • Calm • Ceremonial</div>
+        <h1 class="h1 mt-2">The elegance of ceremonial matcha — now in a capsule.</h1>
+        <p class="mt-3">Bring the ritual into your routine. Smooth flavor, focused energy, zero mess. Just pop, brew, and enjoy.</p>
+        <div class="mt-4">
+          <a class="btn" href="#capsules">Shop Now</a>
+          <a class="btn outline" href="#learn">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-media" data-reveal>
+        <div class="hero-blob" aria-hidden="true"></div>
+        <img class="hero-img" src="https://www.purematchaccino.com/cdn/shop/files/IMG-8508_1296x.png?v=1756335877" alt="Ceremonial matcha and whisk on table" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPSULES / PRODUCT CAROUSEL -->
+  <section class="section" id="capsules">
+    <div class="container">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Capsules of Ceremony</div>
+          <h2 class="h2">Explore our ceremonial matcha capsules</h2>
+        </div>
+        <div class="grid" style="grid-auto-flow:column;justify-content:end">
+          <button class="arrow" aria-label="Previous" data-arrow="prev">⟵</button>
+          <button class="arrow" aria-label="Next" data-arrow="next">⟶</button>
+        </div>
+      </div>
+      <div class="carousel" data-carousel>
+        <!-- Dynamic track (filled by JS from products-data.js) -->
+        <div class="track" data-track id="capsuleTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY TILES -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Shop by category</h2>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="#capsules" aria-label="Shop Matcha">
+          <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=1600&auto=format&fit=crop" alt="Matcha Category"/>
+          <div class="label"><h3 class="h3">Matcha</h3><span class="btn outline">Shop</span></div>
+        </a>
+        <a class="tile" href="#" aria-label="Shop Flavour Syrups">
+          <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=1600&auto=format&fit=crop" alt="Syrups Category"/>
+          <div class="label"><h3 class="h3">Syrups</h3><span class="btn outline">Shop</span></div>
+        </a>
+        <a class="tile" href="#" aria-label="Shop Ube">
+          <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=1600&auto=format&fit=crop" alt="Ube Category"/>
+          <div class="label"><h3 class="h3">Ube</h3><span class="btn outline">Shop</span></div>
+        </a>
+        <a class="tile" href="#" aria-label="Shop Barista">
+          <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=1600&auto=format&fit=crop" alt="Barista Category"/>
+          <div class="label"><h3 class="h3">Barista</h3><span class="btn outline">Shop</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COPY BLOCK -->
+  <section class="section copy" id="learn">
+    <div class="container wrap">
+      <div>
+        <h2 class="h2">The grace of matcha</h2>
+        <p class="mt-3">Matcha is a gentle boost for body and mind. Packed with antioxidants and slow-release caffeine, it helps you feel energized and focused without the jitters. Whether it’s a creamy latte or a refreshing iced tea, matcha brings a smooth, earthy flavor plus a dose of calm and clarity to your day.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop" alt="Matcha latte" style="border-radius:18px;box-shadow:var(--shadow)"/>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <div>
+          <div class="eyebrow">You may also like</div>
+          <h2 class="h2">Popular picks</h2>
+        </div>
+        <div class="grid" style="grid-auto-flow:column;justify-content:end">
+          <button class="arrow" aria-label="Previous" data-arrow="prev">⟵</button>
+          <button class="arrow" aria-label="Next" data-arrow="next">⟶</button>
+        </div>
+      </div>
+      <div class="carousel" data-carousel>
+        <div class="track" data-track id="recsTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <h2 class="h2">Customer Reviews</h2>
+      </div>
+      <div class="carousel" data-carousel>
+        <div class="track" data-track>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p class="mt-2">“Pure, smooth, and ready in an instant. I’m blown away!”</p>
+            <div class="who"><span class="avatar" aria-hidden="true"></span><div><strong>Grace C.</strong><div class="eyebrow">Verified</div></div></div>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p class="mt-2">“High-quality matcha without the hassle. Elegant and easy.”</p>
+            <div class="who"><span class="avatar" aria-hidden="true"></span><div><strong>Chloe A.</strong><div class="eyebrow">Verified</div></div></div>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p class="mt-2">“Capsule format is genius and the flavor is top-tier.”</p>
+            <div class="who"><span class="avatar" aria-hidden="true"></span><div><strong>Lily W.</strong><div class="eyebrow">Verified</div></div></div>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p class="mt-2">“No whisk, no mess — just perfect matcha every time.”</p>
+            <div class="who"><span class="avatar" aria-hidden="true"></span><div><strong>Madison L.</strong><div class="eyebrow">Verified</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UGC GALLERY -->
+  <section class="section">
+    <div class="container">
+      <div class="head"><h2 class="h2">Captured by Our Customers</h2></div>
+      <div class="ugc">
+        <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop" alt="Gallery 1"/>
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=800&auto=format&fit=crop" alt="Gallery 2"/>
+        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=800&auto=format&fit=crop" alt="Gallery 3"/>
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop" alt="Gallery 4"/>
+        <img src="https://images.unsplash.com/photo-1525385133512-2f3bdd039054?q=80&w=800&auto=format&fit=crop" alt="Gallery 5"/>
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop" alt="Gallery 6"/>
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=800&auto=format&fit=crop" alt="Gallery 7"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrap">
+      <div class="footer-col">
+        <div class="brand" aria-label="MatchaCo">
+          <span class="brand-logo" aria-hidden="true"></span>
+          <span>MatchaCo</span>
+        </div>
+        <p class="mt-3" style="max-width:50ch;color:#cfe3d8">Reach us Monday–Saturday, 9:00–19:00 (GMT+1). Free service, standard call charges apply.</p>
+        <p class="mt-3"><a href="mailto:hello@matchaco.store">hello@matchaco.store</a> · <a href="tel:+447000000000">+44 7000 000000</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <div class="grid">
+          <a href="#capsules">Matcha Capsules</a>
+          <a href="#categories">Ube Capsules</a>
+          <a href="#categories">Plant-Based Barista</a>
+          <a href="#categories">Flavour Syrups</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <div class="grid">
+          <a href="#">Shipping Policy</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Terms of Sale</a>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> MatchaCo. All rights reserved.</div>
+  </footer>
+
+  <!-- Search overlay (simple) -->
+  <dialog id="searchDialog" style="border:none;border-radius:16px;max-width:650px;width:92%;padding:0">
+    <form method="dialog" style="padding:18px 18px 12px 18px;border-bottom:1px solid rgba(16,24,20,.08)">
+      <div style="display:flex;gap:10px;align-items:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" placeholder="Search products…" style="flex:1;border:none;outline:none;font-size:1rem;padding:10px 4px;background:transparent" autofocus>
+        <button class="icon-btn" value="cancel" aria-label="Close search">✕</button>
+      </div>
+    </form>
+    <div style="padding:16px;display:grid;gap:8px">
+      <div class="eyebrow">Popular</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn outline" href="#capsules">Ceremonial Matcha</a>
+        <a class="btn outline" href="#categories">Ube</a>
+        <a class="btn outline" href="#categories">Syrups</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Load the shared catalog -->
+  <script src="products-data.js"></script>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const openMenu = document.getElementById('openMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    openMenu?.addEventListener('click', ()=>{
+      mobileMenu.classList.toggle('open');
+      const open = mobileMenu.classList.contains('open');
+      mobileMenu.setAttribute('aria-hidden', String(!open));
+    });
+
+    // Search dialog
+    const searchDialog = document.getElementById('searchDialog');
+    document.getElementById('openSearch')?.addEventListener('click', ()=> searchDialog.showModal());
+
+    // Carousel logic (reusable)
+    document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
+      const track = carousel.querySelector('[data-track]');
+      const wrapper = carousel.closest('.section,.container') || carousel;
+      const arrows = wrapper.querySelectorAll('[data-arrow]');
+      const scrollBy = () => Math.min(track.clientWidth * 0.9, 560);
+      arrows.forEach((btn)=>{
+        btn.addEventListener('click', ()=>{
+          if(btn.dataset.arrow === 'next') track.scrollBy({left: scrollBy(), behavior:'smooth'});
+          else track.scrollBy({left: -scrollBy(), behavior:'smooth'});
+        });
+      });
+    });
+
+    // Fake add-to-cart feedback (for any [data-add] on the page)
+    document.querySelectorAll('[data-add]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        btn.textContent = 'Added ✓';
+        btn.disabled = true;
+        setTimeout(()=>{ btn.textContent = 'Quick Add'; btn.disabled = false; }, 2000);
+      })
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold: .12});
+    document.querySelectorAll('[data-reveal]').forEach(el=> io.observe(el));
+
+    // ---------- Dynamic catalog rendering ----------
+    // Helper: format currency (EUR by default)
+    const fxEUR = (v)=> `€${Number(v).toFixed(2)}`;
+
+    // A) CAPSULES slider from PRODUCTS
+    (function renderCapsules(){
+      const track = document.getElementById('capsuleTrack');
+      if(!track || !window.PRODUCTS) return;
+      const items = window.PRODUCTS.filter(p => p.category === 'capsules').slice(0, 6);
+      track.innerHTML = items.map(p => `
+        <article class="card">
+          <a href="vanilla-capsules-product.html?product=${p.slug}" style="display:block">
+            <img class="thumb" src="${p.images[0]}" alt="${p.title}" />
+          </a>
+          <div class="body">
+            <div class="h3" style="margin:0 0 6px 0">${p.title}</div>
+            <div class="mt-2 price">${fxEUR(p.variants[0].price.EUR)}</div>
+            <div class="mt-3">
+              <a class="btn" href="vanilla-capsules-product.html?product=${p.slug}">View</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    })();
+
+    // B) Popular picks (3 others)
+    (function renderRecs(){
+      const recsTrack = document.getElementById('recsTrack');
+      if(!recsTrack || !window.catalog) return;
+      const items = window.catalog.featured(3);
+      recsTrack.innerHTML = items.map(p => `
+        <article class="card">
+          <a href="vanilla-capsules-product.html?product=${p.slug}">
+            <img class="thumb" src="${p.images[0]}" alt="${p.title}" />
+          </a>
+          <div class="body">
+            <div class="h3" style="margin:0 0 6px 0">${p.title}</div>
+            <div class="eyebrow">${fxEUR(p.variants[0].price.EUR)}</div>
+          </div>
+        </article>
+      `).join('');
+    })();
+    // -----------------------------------------------
+  </script>
+</body>
+</html>
