@@ -611,7 +611,7 @@ window.catalog = {
       const items = window.PRODUCTS.filter(p => p.category === 'capsules').slice(0, 6);
       track.innerHTML = items.map(p => `
         <article class="card">
-          <a href="vanilla-capsules-product.html?product=${p.slug}" style="display:block">
+          <a href="./vanilla-capsules-product.html?product=${p.slug}" style="display:block">
             <img class="thumb" src="${p.images[0]}" alt="${p.title}" />
           </a>
           <div class="body">
@@ -632,7 +632,7 @@ window.catalog = {
       const items = window.catalog.featured(3);
       recsTrack.innerHTML = items.map(p => `
         <article class="card">
-          <a href="vanilla-capsules-product.html?product=${p.slug}">
+          <a href="./vanilla-capsules-product.html?product=${p.slug}">
             <img class="thumb" src="${p.images[0]}" alt="${p.title}" />
           </a>
           <div class="body">
