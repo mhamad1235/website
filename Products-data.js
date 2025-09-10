@@ -1,6 +1,4 @@
-// products-data.js — single source of truth for your catalog
-// Include on pages with: <script src="products-data.js"></script>
-
+// products-data.js
 window.PRODUCTS = [
   {
     id: "ceremonial",
@@ -11,17 +9,16 @@ window.PRODUCTS = [
     rating: 4.9,
     reviewsCount: 12057,
     badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Smooth & balanced", "Focused energy, no jitters", "Sealed for peak freshness"],
+    benefits: ["Smooth & balanced","Focused energy, no jitters","Sealed for peak freshness"],
     variants: [
       { id: "10", label: "Just a Try — 10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "My Matcha Month — 30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
-    // Always-valid images (randomized once via sig but won’t 404)
     images: [
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?matcha,tea,whisk&sig=2",
-      "https://source.unsplash.com/1400x1750/?matcha,latte&sig=3"
+      "https://images.unsplash.com/photo-1553531888-a99fa3a9b229?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1541782806-3efd1ac290a8?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial-grade matcha (Camellia sinensis). 0g added sugar.",
     nutrition: "Per capsule (~3g): ~10 kcal, 0g fat, 1g carbs, 1g protein.",
@@ -40,16 +37,16 @@ window.PRODUCTS = [
     rating: 4.9,
     reviewsCount: 10234,
     badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Smooth vanilla profile", "Focused energy, no jitters", "Freshness-sealed single serves"],
+    benefits: ["Smooth vanilla profile","Focused energy, no jitters","Freshness-sealed single serves"],
     variants: [
       { id: "10", label: "Just a Try — 10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "My Matcha Month — 30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
     images: [
-      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?matcha,capsules&sig=2",
-      "https://source.unsplash.com/1400x1750/?matcha,latte,vanilla&sig=3"
+      "https://images.unsplash.com/photo-1622484212727-7d8da5178a36?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1541782806-3efd1ac290a8?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial matcha, natural vanilla flavour. 0g added sugar.",
     nutrition: "Per capsule (~3g): ~10 kcal, 0g fat, 1g carbs, 1g protein.",
@@ -67,17 +64,17 @@ window.PRODUCTS = [
     category: "capsules",
     rating: 4.8,
     reviewsCount: 8421,
-    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Fruity & refreshing", "Balanced energy", "Freshness-sealed"],
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Fruity & refreshing","Balanced energy","Freshness-sealed"],
     variants: [
       { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
     images: [
-      "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?matcha,berries&sig=2",
-      "https://source.unsplash.com/1400x1750/?green-tea,raspberry&sig=3"
+      "https://images.unsplash.com/photo-1604909052748-1d1a90228f52?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1507133750040-4a8f5702157a?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial matcha, natural raspberry flavour.",
     nutrition: "Per capsule (~3g): ~10 kcal.",
@@ -95,17 +92,17 @@ window.PRODUCTS = [
     category: "capsules",
     rating: 4.8,
     reviewsCount: 6910,
-    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Creamy coconut notes", "Balanced energy", "Freshness-sealed"],
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Creamy coconut notes","Balanced energy","Freshness-sealed"],
     variants: [
       { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
     images: [
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?matcha,tropical&sig=2",
-      "https://source.unsplash.com/1400x1750/?green-tea,coconut&sig=3"
+      "https://images.unsplash.com/photo-1635910178489-0d21702d67d7?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial matcha, natural coconut flavour.",
     nutrition: "Per capsule (~3g): ~10 kcal.",
@@ -123,17 +120,17 @@ window.PRODUCTS = [
     category: "capsules",
     rating: 4.7,
     reviewsCount: 5122,
-    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Cooling mint finish", "Balanced energy", "Freshness-sealed"],
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Cooling mint finish","Balanced energy","Freshness-sealed"],
     variants: [
       { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
     images: [
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?green-tea,mint&sig=2",
-      "https://source.unsplash.com/1400x1750/?matcha,ice&sig=3"
+      "https://images.unsplash.com/photo-1514519565140-130d0cc84635?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1507133750040-4a8f5702157a?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial matcha, natural peppermint flavour.",
     nutrition: "Per capsule (~3g): ~10 kcal.",
@@ -151,17 +148,17 @@ window.PRODUCTS = [
     category: "capsules",
     rating: 4.7,
     reviewsCount: 4711,
-    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
-    benefits: ["Juicy mango notes", "Balanced energy", "Freshness-sealed"],
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Juicy mango notes","Balanced energy","Freshness-sealed"],
     variants: [
       { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
       { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
     ],
     subscriptionDiscountPercent: 10,
     images: [
-      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop",
-      "https://source.unsplash.com/1400x1750/?green-tea,mango&sig=2",
-      "https://source.unsplash.com/1400x1750/?matcha,fruit&sig=3"
+      "https://images.unsplash.com/photo-1514519565140-130d0cc84635?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1507133750040-4a8f5702157a?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1400&q=80"
     ],
     ingredients: "Ceremonial matcha, natural mango flavour.",
     nutrition: "Per capsule (~3g): ~10 kcal.",
@@ -173,7 +170,6 @@ window.PRODUCTS = [
   }
 ];
 
-// Small helpers you can reuse across pages
 window.catalog = {
   bySlug: (slug) => window.PRODUCTS.find(p => p.slug === slug),
   featured: (limit=6) => window.PRODUCTS.slice(0, limit),
