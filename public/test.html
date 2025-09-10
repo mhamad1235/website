@@ -1,1 +1,551 @@
-<h1>slaw</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vanilla Ceremonial Matcha Capsules — Product Page</title>
+  <meta name="description" content="A product detail page inspired by Matchaccino's Vanilla Ceremonial Matcha Capsules — built with vanilla HTML, CSS and JS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFFDF7; --ink:#0E1C16; --muted:#5B6B62; --brand:#91204d; --brand-2:#91204d;
+      --accent:#91204d; --card:#FFFFFF; --radius:20px; --shadow:0 10px 25px rgba(0,0,0,.06);
+      --maxw:1200px; --border:1px solid rgba(16,24,20,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
+    .eyebrow{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.2px;line-height:1.05;font-size:clamp(1.8rem,3.2vw,3rem)}
+    .h2{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.2px;line-height:1.1;font-size:clamp(1.4rem,2.2vw,2rem)}
+    .btn{display:inline-block;padding:.9rem 1.15rem;border-radius:999px;background:var(--brand);color:#fff;font-weight:700;border:1px solid var(--brand);transition:.2s}
+    .btn:hover{background:var(--brand-2);border-color:var(--brand-2)}
+    .btn.ghost{background:#fff;color:var(--brand)}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:var(--border);border-radius:999px;padding:.35rem .7rem;font-weight:600;color:var(--muted);background:#fff}
+    .price{font-weight:800;font-size:1.6rem}
+
+    header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:.85rem 0}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .brand-logo{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #54b185, #1C5D42);box-shadow:inset 0 0 0 3px #fff,0 6px 14px rgba(28,93,66,.25)}
+
+    .crumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.92rem;padding:12px 0}
+    .crumbs a{color:var(--muted)}
+
+    .product{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding-block:28px}
+
+    .gallery{position:relative;display:grid;grid-template-columns:100px 1fr;gap:14px}
+    .thumbs{display:grid;gap:10px;max-height:560px;overflow:auto;scrollbar-width:none}
+    .thumbs::-webkit-scrollbar{display:none}
+    .thumb{border-radius:12px;border:var(--border);overflow:hidden;cursor:pointer;opacity:.8}
+    .thumb.active, .thumb:hover{opacity:1;box-shadow:var(--shadow)}
+    .stage{position:relative}
+    .main-img{aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
+    .zoom{position:absolute;inset:auto 14px 14px auto;background:#fff;border-radius:999px;border:var(--border);width:42px;height:42px;display:grid;place-items:center}
+
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .rating{display:flex;align-items:center;gap:8px;color:#F4B400;font-weight:700}
+    .variant{display:grid;gap:10px}
+    .options{display:flex;gap:8px;flex-wrap:wrap}
+    .opt input{display:none}
+    .opt label{display:inline-flex;align-items:center;gap:8px;background:#fff;border:var(--border);border-radius:999px;padding:.6rem .9rem;font-weight:600;cursor:pointer}
+    .opt input:checked + label{border-color:var(--brand);box-shadow:0 0 0 3px rgba(28,93,66,.12)}
+    .qty{display:inline-flex;align-items:center;border:var(--border);border-radius:999px;overflow:hidden}
+    .qty button{width:40px;height:40px;border:none;background:#fff;font-size:1.2rem}
+    .qty input{width:56px;text-align:center;border:none;outline:none;background:#fff;font-weight:700}
+
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .benefit{border:var(--border);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--muted);background:#fff}
+
+    .accordion{border-top:var(--border);border-bottom:var(--border);margin-top:14px}
+    .accordion details{border-top:var(--border)}
+    .accordion summary{list-style:none;cursor:pointer;padding:16px 6px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+    .accordion summary::-webkit-details-marker{display:none}
+    .accordion .content{padding:0 6px 16px 6px;color:var(--muted)}
+
+    .section{padding-block:44px}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .panel{background:#fff;border:var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+
+    .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:14px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
+    .card{background:#fff;border:var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+    .card .thumb{aspect-ratio:1/1;object-fit:cover}
+    .card .body{padding:12px}
+
+    .sticky-bar{position:sticky;bottom:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:saturate(140%) blur(6px);border-top:var(--border);display:none}
+    .sticky-inner{max-width:var(--maxw);margin:auto;padding:10px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+
+    footer{margin-top:44px;border-top:var(--border);padding:18px 0;color:var(--muted);text-align:center}
+
+    .grid{display:grid;gap:12px}
+    .mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
+
+    @media (max-width: 980px){
+      .product{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      .thumbs{order:2;grid-template-columns:repeat(6,1fr)}
+      .stage{order:1}
+      .sticky-bar{display:block}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Home"><span class="brand-logo"></span><span>MatchaCo</span></a>
+      <div class="eyebrow">Enjoy free shipping over €80</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="crumbs" aria-label="Breadcrumbs">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="#">Matcha Capsules</a>
+      <span>›</span>
+      <span id="crumbTitle" aria-current="page">Vanilla Ceremonial Matcha Capsules</span>
+    </nav>
+
+    <section class="product" id="product">
+      <div class="gallery">
+        <div class="thumbs" id="thumbs"></div>
+        <div class="stage">
+          <img id="mainImage" class="main-img" src="" alt="Main product image">
+          <button class="zoom" id="zoomBtn" aria-label="Open image fullscreen">🔍</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow">Ceremonial Grade</div>
+        <h1 class="h1" id="title">Vanilla Ceremonial Matcha Capsules</h1>
+        <div class="rating mt-2" id="rating" aria-label="Rating"></div>
+
+        <div class="badges mt-3" id="badges"></div>
+
+        <div class="mt-4 price" id="price">€14.99</div>
+
+        <div class="variant mt-3" role="group" aria-label="Choose pack size">
+          <div class="options" id="variants"></div>
+        </div>
+
+        <div class="panel mt-3">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div>
+              <div class="h2" style="font-size:1.05rem">Purchase options</div>
+              <div class="eyebrow">One-time or Subscribe & save</div>
+            </div>
+            <label class="chip" style="cursor:pointer">
+              <input type="checkbox" id="subToggle" style="accent-color:var(--brand)"> Subscribe and save 10%
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-3" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div class="qty" aria-label="Choose quantity">
+            <button type="button" id="minus">−</button>
+            <input id="qty" type="number" value="1" min="1" inputmode="numeric" pattern="[0-9]*">
+            <button type="button" id="plus">+</button>
+          </div>
+          <button class="btn" id="addToCart">Add to Cart</button>
+          <button class="btn ghost" id="buyNow">Buy Now</button>
+        </div>
+        <div class="eyebrow mt-2">Free shipping over €80 • Secure checkout</div>
+
+        <div class="benefits mt-4" id="benefits"></div>
+
+        <div class="accordion mt-4">
+          <details>
+            <summary>Ingredients & Nutrition <span>+</span></summary>
+            <div class="content" id="ingr"></div>
+          </details>
+          <details>
+            <summary>How to brew <span>+</span></summary>
+            <div class="content" id="brew"></div>
+          </details>
+          <details>
+            <summary>Shipping & Returns <span>+</span></summary>
+            <div class="content" id="ship"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="info-grid">
+        <div>
+          <div class="eyebrow">Why capsules?</div>
+          <h2 class="h2">Ritual, minus the mess</h2>
+          <p class="mt-2" style="color:var(--muted)">Traditional jars (~30 g) give ~15 servings and can lose freshness after opening. Capsules seal the perfect dose, stay fresher, and keep your counter powder-free — ideal for a clean, consistent daily matcha.</p>
+          <div class="compare mt-3">
+            <div class="panel">
+              <div class="eyebrow">Old way</div>
+              <ul class="mt-1" style="margin:0 0 0 18px;color:var(--muted)">
+                <li>Open jar repeatedly</li>
+                <li>Messy whisking & sifting</li>
+                <li>Inconsistent dosing</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <div class="eyebrow">New way</div>
+              <ul class="mt-1" style="margin:0 0 0 18px;color:var(--muted)">
+                <li>Sealed single-serve capsules</li>
+                <li>Click-and-brew in seconds</li>
+                <li>Fresh, smooth flavour every time</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">Compatibility</div>
+          <h2 class="h2">Made for Nespresso®* machines</h2>
+          <p class="mt-2" style="color:var(--muted)">Capsules work with most Nespresso® Original line machines. Brewing at ~83–86 °C preserves the delicate flavour and nutrients of ceremonial matcha. *Nespresso® is a third-party trademark.</p>
+          <img class="mt-3" src="https://images.unsplash.com/photo-1525385133512-2f3bdd039054?q=80&w=1200&auto=format&fit=crop" alt="Nespresso style machine with cup" style="border-radius:14px;box-shadow:var(--shadow)">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="head">
+        <div class="h2">You may also like</div>
+      </div>
+      <div class="strip" id="recs"></div>
+    </section>
+  </main>
+
+  <div class="sticky-bar" aria-hidden="true">
+    <div class="sticky-inner">
+      <div style="min-width:0">
+        <div id="stickyTitle" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Vanilla Ceremonial Matcha Capsules</div>
+        <div class="eyebrow" id="stickyPrice">€14.99</div>
+      </div>
+      <button class="btn" id="stickyAdd">Add to Cart</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">© <span id="year"></span> MatchaCo — All rights reserved.</div>
+  </footer>
+
+  <dialog id="lightbox" style="border:none;border-radius:16px;padding:0;max-width:min(92vw,1000px)">
+    <img id="lightboxImg" alt="Enlarged product image" style="width:100%;height:auto;border-radius:16px"/>
+    <form method="dialog" style="padding:8px 12px;text-align:right"><button class="btn ghost">Close</button></form>
+  </dialog>
+
+<script>
+// ---------- Catalog-driven population ----------
+window.PRODUCTS = [
+  {
+    id: "ceremonial",
+    slug: "ceremonial-matcha-capsules",
+    title: "Ceremonial Matcha",
+    subtitle: "Pure ceremonial grade",
+    category: "capsules",
+    rating: 4.9,
+    reviewsCount: 12057,
+    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
+    benefits: ["Smooth & balanced","Focused energy, no jitters","Sealed for peak freshness"],
+    variants: [
+      { id: "10", label: "Just a Try — 10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "My Matcha Month — 30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+     "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial-grade matcha (Camellia sinensis). 0g added sugar.",
+    nutrition: "Per capsule (~3g): ~10 kcal, 0g fat, 1g carbs, 1g protein.",
+    howToBrew: "Insert capsule. Brew 25–40 ml for a shot or 80–120 ml for a longer cup; ~83–86 °C.",
+    shipping: "Free shipping over €80. 30-day returns on unopened packs.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["vanilla-ceremonial-matcha-capsules", "raspberry-matcha-capsules", "coconut-matcha-capsules"]
+  },
+  {
+    id: "vanilla",
+    slug: "vanilla-ceremonial-matcha-capsules",
+    title: "Vanilla Ceremonial Matcha Capsules",
+    subtitle: "Velvety vanilla • ceremonial grade",
+    category: "capsules",
+    rating: 4.9,
+    reviewsCount: 10234,
+    badges: ["No added sugar", "Gluten-free", "Lactose-free", "Nespresso® compatible"],
+    benefits: ["Smooth vanilla profile","Focused energy, no jitters","Freshness-sealed single serves"],
+    variants: [
+      { id: "10", label: "Just a Try — 10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "My Matcha Month — 30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial matcha, natural vanilla flavour. 0g added sugar.",
+    nutrition: "Per capsule (~3g): ~10 kcal, 0g fat, 1g carbs, 1g protein.",
+    howToBrew: "Insert capsule. Brew 25–40 ml (shot) or 80–120 ml (longer); ~83–86 °C.",
+    shipping: "Free shipping over €80. 30-day returns on unopened packs.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["coconut-matcha-capsules", "raspberry-matcha-capsules", "ceremonial-matcha-capsules"]
+  },
+  {
+    id: "raspberry",
+    slug: "raspberry-matcha-capsules",
+    title: "Raspberry Matcha",
+    subtitle: "Bright berry notes",
+    category: "capsules",
+    rating: 4.8,
+    reviewsCount: 8421,
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Fruity & refreshing","Balanced energy","Freshness-sealed"],
+    variants: [
+      { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial matcha, natural raspberry flavour.",
+    nutrition: "Per capsule (~3g): ~10 kcal.",
+    howToBrew: "Brew 25–120 ml depending on strength; ~83–86 °C.",
+    shipping: "Free shipping over €80.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["vanilla-ceremonial-matcha-capsules", "coconut-matcha-capsules"]
+  },
+  {
+    id: "coconut",
+    slug: "coconut-matcha-capsules",
+    title: "Coconut Matcha",
+    subtitle: "Creamy tropical twist",
+    category: "capsules",
+    rating: 4.8,
+    reviewsCount: 6910,
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Creamy coconut notes","Balanced energy","Freshness-sealed"],
+    variants: [
+      { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+      "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial matcha, natural coconut flavour.",
+    nutrition: "Per capsule (~3g): ~10 kcal.",
+    howToBrew: "Brew 25–120 ml; ~83–86 °C.",
+    shipping: "Free shipping over €80.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["vanilla-ceremonial-matcha-capsules", "raspberry-matcha-capsules"]
+  },
+  {
+    id: "peppermint",
+    slug: "peppermint-matcha-capsules",
+    title: "Peppermint Matcha",
+    subtitle: "Cool & crisp",
+    category: "capsules",
+    rating: 4.7,
+    reviewsCount: 5122,
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Cooling mint finish","Balanced energy","Freshness-sealed"],
+    variants: [
+      { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+     "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial matcha, natural peppermint flavour.",
+    nutrition: "Per capsule (~3g): ~10 kcal.",
+    howToBrew: "Brew 25–120 ml; ~83–86 °C.",
+    shipping: "Free shipping over €80.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["ceremonial-matcha-capsules", "coconut-matcha-capsules"]
+  },
+  {
+    id: "mango",
+    slug: "mango-matcha-capsules",
+    title: "Mango Matcha",
+    subtitle: "Juicy & bright",
+    category: "capsules",
+    rating: 4.7,
+    reviewsCount: 4711,
+    badges: ["No added sugar","Gluten-free","Lactose-free","Nespresso® compatible"],
+    benefits: ["Juicy mango notes","Balanced energy","Freshness-sealed"],
+    variants: [
+      { id: "10", label: "10 Capsules (30g)", price: { EUR: 14.99, USD: 16.99 } },
+      { id: "30", label: "30 Capsules (90g)", price: { EUR: 34.90, USD: 38.90 } }
+    ],
+    subscriptionDiscountPercent: 10,
+    images: [
+     "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=800&auto=format&fit=crop"
+    ],
+    ingredients: "Ceremonial matcha, natural mango flavour.",
+    nutrition: "Per capsule (~3g): ~10 kcal.",
+    howToBrew: "Brew 25–120 ml; ~83–86 °C.",
+    shipping: "Free shipping over €80.",
+    compatibility: "Original line Nespresso® machines",
+    priceDisplayCurrency: "EUR",
+    recommended: ["raspberry-matcha-capsules", "vanilla-ceremonial-matcha-capsules"]
+  }
+];
+
+window.catalog = {
+  bySlug: (slug) => window.PRODUCTS.find(p => p.slug === slug),
+  featured: (limit=6) => window.PRODUCTS.slice(0, limit),
+  others: (exceptSlug, limit=3) => window.PRODUCTS.filter(p=>p.slug!==exceptSlug).slice(0, limit)
+};
+
+const params = new URLSearchParams(location.search);
+const slug = params.get('product') || 'vanilla-ceremonial-matcha-capsules';
+const product = (window.catalog && catalog.bySlug(slug)) || (window.PRODUCTS && window.PRODUCTS[0]);
+
+// ✅ Helper to link to *this same page* with a different product (avoids 404 on Vercel)
+const productURL = (slug) => {
+  const u = new URL(location.href);
+  u.searchParams.set('product', slug);
+  return u.pathname + u.search;
+};
+
+// Quick SVG fallback
+const FALLBACK_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500"><rect width="100%" height="100%" fill="#f2f2f2"/><text x="50%" y="50%" font-family="Arial" font-size="28" fill="#999" text-anchor="middle" dominant-baseline="middle">Image unavailable</text></svg>'
+);
+
+// ----- pointers -----
+const titleEl = document.getElementById('title');
+const crumbTitle = document.getElementById('crumbTitle');
+const stickyTitle = document.getElementById('stickyTitle');
+const ratingEl = document.getElementById('rating');
+const badgesWrap = document.getElementById('badges');
+const benefitsWrap = document.getElementById('benefits');
+const thumbsWrap = document.getElementById('thumbs');
+const mainImage = document.getElementById('mainImage');
+const variantsWrap = document.getElementById('variants');
+const priceEl = document.getElementById('price');
+const stickyPrice = document.getElementById('stickyPrice');
+const ingrEl = document.getElementById('ingr');
+const brewEl = document.getElementById('brew');
+const shipEl = document.getElementById('ship');
+const recsStrip = document.getElementById('recs');
+
+// ----- basic text -----
+titleEl.textContent = product.title;
+crumbTitle.textContent = product.title;
+stickyTitle.textContent = product.title;
+ratingEl.innerHTML = `★★★★★ <span style="color:var(--ink);font-weight:600">${product.rating.toFixed(1)}</span> <span class="eyebrow">${product.reviewsCount.toLocaleString()} reviews</span>`;
+badgesWrap.innerHTML = product.badges.map(b => `<span class="chip">${b}</span>`).join('');
+benefitsWrap.innerHTML = product.benefits.map(b => `<div class="benefit">${b}</div>`).join('');
+
+// ===================== GALLERY =====================
+const imgs = (Array.isArray(product.images) && product.images.length) ? product.images : [FALLBACK_IMG];
+
+let currentIndex = 0;
+function setMainImage(i) {
+  const src = imgs[i] || FALLBACK_IMG;
+  mainImage.src = src;
+  mainImage.alt = `${product.title} image ${i+1}`;
+  mainImage.loading = 'eager';
+}
+mainImage.onerror = () => { mainImage.src = FALLBACK_IMG; };
+
+thumbsWrap.innerHTML = imgs.map((src, i) => `
+  <img class="thumb${i===0 ? ' active' : ''}" src="${src}" data-index="${i}" alt="${product.title} image ${i+1}" loading="lazy">
+`).join('');
+
+thumbsWrap.querySelectorAll('.thumb').forEach(el => {
+  el.onerror = () => { el.src = FALLBACK_IMG; };
+  el.addEventListener('click', () => {
+    thumbsWrap.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    currentIndex = Number(el.dataset.index) || 0;
+    setMainImage(currentIndex);
+  });
+});
+
+setMainImage(0);
+
+// ===================== VARIANTS & PRICE =====================
+variantsWrap.innerHTML = product.variants.map((v,i)=>`
+  <div class="opt">
+    <input type="radio" name="variant" id="v-${v.id}" value="${v.id}" ${i===0?'checked':''}
+           data-price-eur="${v.price.EUR}" data-price-usd="${v.price.USD}">
+    <label for="v-${v.id}">${v.label}</label>
+  </div>
+`).join('');
+
+const subToggle = document.getElementById('subToggle');
+function formatEUR(v){ return `€${Number(v).toFixed(2)}`; }
+function currentVariant(){
+  const checked = document.querySelector('input[name="variant"]:checked');
+  const id = checked ? checked.value : product.variants[0].id;
+  return product.variants.find(v => v.id === id) || product.variants[0];
+}
+function updatePrice(){
+  const base = currentVariant().price.EUR;
+  const discount = (product.subscriptionDiscountPercent || 0) / 100;
+  const final = subToggle.checked ? base * (1 - discount) : base;
+  priceEl.textContent = formatEUR(final);
+  stickyPrice.textContent = formatEUR(final);
+}
+document.querySelectorAll('input[name="variant"]').forEach(r => r.addEventListener('change', updatePrice));
+subToggle.addEventListener('change', updatePrice);
+updatePrice();
+
+// ===================== ACCORDIONS & RECS =====================
+ingrEl.textContent = `${product.ingredients} ${product.nutrition}`;
+brewEl.textContent = product.howToBrew;
+shipEl.textContent = product.shipping;
+
+const recs = (product.recommended && product.recommended.length)
+  ? product.recommended
+  : (catalog ? catalog.others(product.slug, 3).map(p=>p.slug) : []);
+
+recsStrip.innerHTML = recs.map(s=>{
+  const p = catalog.bySlug(s) || product;
+  return `
+    <article class="card">
+      <a href="${productURL(p.slug)}">
+        <img class="thumb" src="${p.images[0] || FALLBACK_IMG}" alt="${p.title}" loading="lazy" />
+      </a>
+      <div class="body">
+        <div style="font-weight:700">${p.title}</div>
+        <div class="eyebrow">€${p.variants[0].price.EUR.toFixed(2)}</div>
+      </div>
+    </article>
+  `;
+}).join('');
+
+// ===================== UI niceties =====================
+const zoomBtn = document.getElementById('zoomBtn');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+zoomBtn.addEventListener('click', ()=>{ lightboxImg.src = mainImage.src; lightbox.showModal(); });
+
+const qtyEl = document.getElementById('qty');
+document.getElementById('minus').addEventListener('click', ()=>{ qtyEl.value = Math.max(1, (+qtyEl.value||1)-1); });
+document.getElementById('plus').addEventListener('click', ()=>{ qtyEl.value = (+qtyEl.value||1)+1; });
+
+function added(btn){ const old = btn.textContent; btn.textContent='Added ✓'; btn.disabled=true; setTimeout(()=>{ btn.textContent=old; btn.disabled=false; }, 1600); }
+document.getElementById('addToCart').addEventListener('click', e=> added(e.currentTarget));
+document.getElementById('stickyAdd').addEventListener('click', e=> added(e.currentTarget));
+document.getElementById('buyNow').addEventListener('click', ()=> alert('Proceed to checkout flow…'));
+
+const stickyBar = document.querySelector('.sticky-bar');
+const productSection = document.getElementById('product');
+new IntersectionObserver(entries=>{
+  entries.forEach(e=> stickyBar.setAttribute('aria-hidden', e.isIntersecting ? 'true':'false'));
+}, {threshold: 0}).observe(productSection);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
